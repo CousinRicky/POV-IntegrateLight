@@ -1,10 +1,11 @@
 /* integratelight.css
  *
- * Copyright (C) 2016 - 2021 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the CC-LGPL.
- * See https://creativecommons.org/licenses/LGPL/2.1/ for more information.
+ * Copyright (C) 2016 - 2022 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU LGPL 2.1.
+ * See https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for the text of
+ * the license.
  *
- * Version 1.0.1A  2021-Oct-10
+ * Version 1.0.1A  2021-Oct-10, updated 2022-Feb-18
  */
 a:link    { color:#00c; }
 a:visited { color:#606; }
@@ -161,7 +162,10 @@ th
 ul { list-style:square; }
 td ul,
 ul ul { list-style:disc; }
-var { font-family:serif; }
+var
+{ font-family:serif;
+  letter-spacing:0;
+}
 
 .args
 { margin:0.3em 0%;
