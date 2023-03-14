@@ -1,4 +1,4 @@
-/* integratelight_scene.pov version 1.0.1A
+/* integratelight_scene.pov version 1.0.2
  * Persistence of Vision Raytracer scene description file
  * POV-Ray Object Collection demo
  *
@@ -6,7 +6,7 @@
  * floor are illuminated by a lamp.  The user may select from a variety of
  * lamps.
  *
- * Copyright (C) 2016 - 2021 Richard Callwood III.  Some rights reserved.
+ * Copyright (C) 2016 - 2023 Richard Callwood III.  Some rights reserved.
  * This file is licensed under the terms of the CC-LGPL
  * a.k.a. the GNU Lesser General Public License version 2.1.
  *
@@ -25,7 +25,8 @@
  *        2014-May-22  Created.
  * 1.0    2016-Nov-14  Uploaded.
  * 1.0.1  2019-Mar-31  The default normalization is changed from .gray to xyY.
- * 1.0.1A 2021-Oct-10  The license text is updated.
+ * 1.0.2  2023-Mar-14  Callwood's modifications to SpectralComposer.pov are used
+ *                     if available.
  */
 // Preview:
 //   +W640 +H480 +A Declare=Preview=1
@@ -237,10 +238,17 @@
 //%%%%%%%%%%%%%%%%%%%%%%%%%%% ASSEMBLE THE FRAMES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #else
 
-  // Make sure ALL of the #declare FName lines in SpectralComposer.pov
-  // are commented out, or this next #declare will be overridden!
   #declare FName = "integratelight_scene"
-  #include "SpectralComposer.pov" // from SpectralRender
+  #if (file_exists ("SpectralComposer-gm2.inc"))
+    #debug "Using modified SpectralComposer for gamut mapping.\n"
+    // from https://github.com/CousinRicky/POV-SpectralRender-mods
+    #include "SpectralComposer-gm2.inc"
+  #else
+    // from SpectralRender
+    // Make sure ALL of the #declare FName lines in SpectralComposer.pov
+    // are commented out, or the above #declare FName will be overridden!
+    #include "SpectralComposer.pov"
+  #end
 
 #end
 

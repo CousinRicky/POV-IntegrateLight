@@ -1,4 +1,4 @@
-/* integratelight_compare.pov version 1.0.1A
+/* integratelight_compare.pov version 1.0.2
  * Persistence of Vision Raytracer scene description file
  * POV-Ray Object Collection demo
  *
@@ -6,7 +6,7 @@
  * In preview mode, the two methods yield nearly identical colors, but in
  * spectral mode, there are striking differences.
  *
- * Copyright (C) 2016 - 2021 Richard Callwood III.  Some rights reserved.
+ * Copyright (C) 2016 - 2023 Richard Callwood III.  Some rights reserved.
  * This file is licensed under the terms of the CC-LGPL
  * a.k.a. the GNU Lesser General Public License version 2.1.
  *
@@ -24,8 +24,8 @@
  * -----  ----         --------
  *        2016-Jul-11  Adapted from a test scene.
  * 1.0    2016-Nov-14  Uploaded.
- * 1.0.1  2019-Mar-31  No change.
  * 1.0.1A 2021-Oct-10  The license text is updated.
+ * 1.0.2  2023-Mar-14  No change.
  */
 // Preview:
 //   +W480 +H360 +A +AM1 +R5 -J Declare=Preview=1

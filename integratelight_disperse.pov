@@ -1,10 +1,10 @@
-/* integratelight_disperse.pov version 1.0.1A
+/* integratelight_disperse.pov version 1.0.2
  * Persistence of Vision Raytracer scene description file
  * POV-Ray Object Collection demo
  *
  * Demo of selected lamps prepared with IntegrateLight, viewed through a prism.
  *
- * Copyright (C) 2016 - 2021 Richard Callwood III.  Some rights reserved.
+ * Copyright (C) 2016 - 2023 Richard Callwood III.  Some rights reserved.
  * This file is licensed under the terms of the CC-LGPL
  * a.k.a. the GNU Lesser General Public License version 2.1.
  *
@@ -23,7 +23,8 @@
  *        2016-Jul-09  Started.
  * 1.0    2016-Nov-14  Uploaded.
  * 1.0.1  2019-Mar-31  The normalization is changed from .gray to xyY.
- * 1.0.1A 2021-Oct-10  The license text is updated.
+ * 1.0.2  2023-Mar-14  Callwood's modifications to SpectralComposer.pov are used
+ *                     if available.
  */
 // Pass 1:
 //   +W640 +H480 +A +AM2 +R3 +FE +KI1 +KF36 +KFI38 +KFF73
@@ -145,10 +146,17 @@
 //%%%%%%%%%%%%%%%%%%%%%%%%%%% ASSEMBLE THE FRAMES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #else
 
-  // Make sure ALL of the #declare FName lines in SpectralComposer.pov
-  // are commented out, or this next #declare will be overridden!
   #declare FName = "integratelight_disperse"
-  #include "SpectralComposer.pov" // from SpectralRender
+  #if (file_exists ("SpectralComposer-gm2.inc"))
+    #debug "Using modified SpectralComposer for gamut mapping.\n"
+    // from https://github.com/CousinRicky/POV-SpectralRender-mods
+    #include "SpectralComposer-gm2.inc"
+  #else
+    // from SpectralRender
+    // Make sure ALL of the #declare FName lines in SpectralComposer.pov
+    // are commented out, or the above #declare FName will be overridden!
+    #include "SpectralComposer.pov"
+  #end
 
 #end
 

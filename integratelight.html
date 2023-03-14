@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>IntegrateLight 1.0.1A User Manual | POV-Ray Object Collection</title>
+<title>IntegrateLight 1.0.2 User Manual | POV-Ray Object Collection</title>
 <link rel="stylesheet" type="text/css" href="integratelight.css">
 </head>
 
 <body>
 
-<h1>IntegrateLight 1.0.1A User&nbsp;Manual</h1>
+<h1>IntegrateLight 1.0.2 User&nbsp;Manual</h1>
 
 <h2>Abstract</h2>
 
@@ -84,7 +84,7 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
   <th>File</th>
   <th>Description</th>
  </tr><tr>
-  <td><code>README</code><var>nnnnnn</var><code>.html</code></td>
+  <td><code>README<var>nnnnnn</var>.html</code></td>
   <td>Important information about using the POV-Ray Object Collection</td>
  </tr><tr>
   <td><code>integratelight_description.txt</code></td>
@@ -101,7 +101,7 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
  </tr><tr>
   <td><code>cc-LGPL-a.png</code></td>
  </tr><tr>
-  <td><code>Version</code><var>nnnnnn</var><code>.js</code></td>
+  <td><code>Version<var>nnnnnn</var>.js</code></td>
  </tr>
 </table>
 
@@ -113,13 +113,22 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
 
 <ul>
  <li>POV-Ray version 3.7 or later.
- <li><a href="http://www.ignorancia.org/index.php/technical/lightsys/">Lightsys version 4</a> (Lightsys IV), available under a separate license.
+ <li><a href="http://www.ignorancia.org/index.php/technical/lightsys/" target="_blank">Lightsys version 4</a> (Lightsys IV)
   <ul>
    <li><strong>Do not</strong> save Lightsys to your Object Collection folder, but do make sure that it is in your <a href="https://wiki.povray.org/content/Reference:Scene_Parsing_Options#Library_Paths">library path</a>.
   </ul>
- <li><a href="https://www.lilysoft.org/CGI/SR/Spectral%20Render.htm">SpectralRender</a> version 0.20 or later, available under a separate license.
+ <li><a href="https://www.lilysoft.org/CGI/SR/Spectral%20Render.htm" target="_blank">SpectralRender</a> version 0.20 or later
   <ul>
    <li><strong>Do not</strong> save SpectralRender to your Object Collection folder, but do make sure that it is in your library path.
+  </ul>
+</ul>
+
+<h4>Optional</h4>
+
+<ul>
+ <li><a href="https://github.com/CousinRicky/POV-SpectralRender-mods" target="_blank">Modifications to SpectralRender</a>, for <a href="https://en.wikipedia.org/wiki/Color_management#Gamut_mapping" target="_blank">gamut-mapped</a> renders of the demo scenes
+  <ul>
+   <li>These modifications may be saved in your SpectralRender folder. They will not overwrite the original SpectralRender files.
   </ul>
 </ul>
 
@@ -140,7 +149,7 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
 #include "integratelight.inc"</pre>
 <p>Including <code>integratelight.inc</code> more than once is harmless, but <code>spectral.inc</code> should be included only once. If the render halts with a message that it cannot find file <code>CIE.inc</code>, then Lightsys IV was not installed properly, or is not in the library path.
 
-<p>As of the release of IntegrateLight 1.0.1A, POV-Ray will issue a warning that the experimental feature spline is used. This is normal and expected.
+<p>As of the release of IntegrateLight 1.0.2, POV-Ray will issue a warning that the experimental feature spline is used. This is normal and expected.
 
 <p><a href="#toc">Table of contents</a><hr>
 
@@ -163,7 +172,7 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
 
 <h4>Integration Method (the Simpson Argument)</h4>
 
-<p>Macros <code>ILight_Continuous()</code> and <code>ILight_Continuous()</code> use numerical integration to prepare the spectra. Two methods are available: the trapezoidal rule and Simpson’s rule. The trapezoidal rule treats a spectral curve as a series of straight line segments, whereas Simpson’s rule treats the spectrum as a series of parabolic curves. For daylight illuminants (e.g., D65), the trapezoidal rule is sufficient at the default <a href="#External">integral step</a> of 5.
+<p>Macros <code>ILight_Continuous()</code> and <code>ILight_Reflective()</code> use numerical integration to prepare the spectra. Two methods are available: the trapezoidal rule and Simpson’s rule. The trapezoidal rule treats a spectral curve as a series of straight line segments, whereas Simpson’s rule treats the spectrum as a series of parabolic curves. For daylight illuminants (e.g., D65), the trapezoidal rule is sufficient at the default <a href="#External">integral step</a> of 5.
 
 <h4 id="Normalization">Normalization</h4>
 
@@ -181,9 +190,9 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
  <dt><code>ILIGHT_GREY</code>
  <dd>Same as <code>ILIGHT_GRAY</code>.
  <dt><code>ILIGHT_XYY</code>
- <dd>The spectrum is normalized such that, after conversion to <a href="https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xy_chromaticity_diagram_and_the_CIE_xyY_color_space"><var>xyY</var></a>, the <var>Y</var> component is 1.0. Note that <var>Y</var> represents luminance by definition, and is more accurate than POV-Ray’s current implementation of <code>.gray</code> in this respect.
+ <dd>The spectrum is normalized such that, after conversion to <a href="https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xy_chromaticity_diagram_and_the_CIE_xyY_color_space" target="_blank"><var>xyY</var></a>, the <var>Y</var> component is 1.0. Note that <var>Y</var> represents luminance by definition, and is more accurate than POV-Ray’s current implementation of <code>.gray</code> in this respect.
  <dt><code>ILIGHT_XYZ</code>
- <dd>The spectrum is normalized such that, after conversion to <a href="https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xy_chromaticity_diagram_and_the_CIE_xyY_color_space"><var>xyz</var></a>, the sum of <var>x</var>, <var>y</var>, and <var>z</var> is 1.0.
+ <dd>The spectrum is normalized such that, after conversion to <a href="https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_xy_chromaticity_diagram_and_the_CIE_xyY_color_space" target="_blank"><var>xyz</var></a>, the sum of <var>x</var>, <var>y</var>, and <var>z</var> is 1.0.
  <dt><var>wavelength value</var>
  <dd>Any value 300 or greater is treated as a wavelength in nanometers, and the spectrum is normalized such that this wavelength’s intensity is 1.0.
   <p>Note that the value of the array element corresponding to <var>wavelength value</var> (if any) may not be exactly 1.0, because it will contain the integrated value, not the point value.
@@ -251,6 +260,8 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
  </tr>
 </table>
 
+<p><a href="#toc">Table of contents</a><hr>
+
 <h3 id="ILight_Reflective">ILight_Reflective (Curve, Simpson, Level)</h3>
 
 <p>Integrates a reflective spectral curve spline and returns a data structure that can be passed to SpectralRender macros such as <code>T_Spectral_Matte()</code>. The curve is integrated from 375 nm to 735 nm in steps no larger than <a href="#External"><code>CIE_IntegralStep</code></a>. (If the scene is rendered in SpectralRender preview mode, the color is calculated using Lightsys IV’s current gamut mapping setting.)
@@ -289,7 +300,7 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
   <td><code>CIE_IntegralStep</code></td>
   <td>Lightsys IV (file <code>CIE.inc</code>)</td>
   <td>float</td>
-  <td>This parameter is used to determine the integral step size, in nanometers. If its value does not divide evenly into 10 (for trapezoidal integration) or 5 (for Simpson’s rule integration), IntegrateLight will use the next smaller value which does.</td>
+  <td>This parameter is used to determine the integral step size between wavelength samples, in nanometers. If its value does not divide evenly into 10 (for trapezoidal integration) or 5 (for Simpson’s rule integration), IntegrateLight will use the next smaller value which does.</td>
   <td>5</td>
  </tr>
 </table>
@@ -302,21 +313,21 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
   <td><code>INTEGRATELIGHT_VERSION</code></td>
   <td>float</td>
   <td>The IntegrateLight version, in case the scene file needs that information.</td>
-  <td>1.01</td>
+  <td>1.02</td>
  </tr>
 </table>
 
 <h3>Internal Identifiers</h3>
 
-<p>Any identifiers in <code>integratelight.inc</code> that are not documented in this manual are considered “private” or “protected,” and are subject to change or elimination in a future update.
+<p>Any identifiers in <code>integratelight.inc</code> that are not documented in this manual are considered “private,” and are subject to change or elimination in a future update.
 
 <p><a href="#toc">Table of contents</a><hr>
 
 <h2 id="About">About IntegrateLight</h2>
 
 <address>
- <p>Copyright © 2016 &ndash; 2021 Richard Callwood III. Some rights reserved.
- <p>This library is free software; you can redistribute it and/or modify it under the terms of the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">GNU Lesser General Public License version 2.1</a> as published by the Free Software Foundation.
+ <p>Copyright © 2016 &ndash; 2023 Richard Callwood III. Some rights reserved.
+ <p>This library is free software; you can redistribute it and/or modify it under the terms of the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html" target="_blank">GNU Lesser General Public License version 2.1</a> as published by the Free Software Foundation.
  <p>This library is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 </address>
 
@@ -335,16 +346,14 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
 <table>
  <tr><th>Version</th> <th>Date</th> <th>Notes</th></tr>
  <tr>
-  <td>1.0</td>
-  <td>2016 November 14</td>
+  <td>1.0</td> <td>2016 November 14</td>
   <td>
    <ul>
     <li>The initial public release.
    </ul>
   </td>
  </tr><tr>
-  <td>1.0.1</td>
-  <td>2019 March 31</td>
+  <td>1.0.1</td> <td>2019 March 31</td>
   <td>
    <ul>
     <li>Supplementary information in this user manual about spectrum normalization is augmented, and a misleading directive about Lightsys IV luminosities is deleted.
@@ -356,6 +365,13 @@ that prepares spectra for use with Lilysoft’s SpectralRender package. The impe
   <td>
    <ul>
     <li>The User Manual and license texts are updated for repositories other than lib.povray.org.
+   </ul>
+  </td>
+ </tr><tr>
+  <td>1.0.2</td> <td>2023 March 14</td>
+  <td>
+   <ul>
+    <li>The scenes <code>integratelight_disperse.pov</code> and <code>integratelight_scene.pov</code> will use a modified version of the SpectralComposer file for gamut mapping, if the modified file is available.
    </ul>
   </td>
  </tr>

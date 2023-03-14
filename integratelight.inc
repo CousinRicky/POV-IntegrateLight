@@ -1,11 +1,11 @@
-/* integratelight.inc version 1.0.1A
+/* integratelight.inc version 1.0.2
  * Persistence of Vision Raytracer include file
  * POV-Ray Object Collection
  *
  * Converts spectral curve splines into a data structure suitable for
  * Lilysoft's SpectralRender package, using numeric integration.
  *
- * Copyright (C) 2016 - 2021 Richard Callwood III.  Some rights reserved.
+ * Copyright (C) 2016 - 2023 Richard Callwood III.  Some rights reserved.
  * This file is licensed under the terms of the CC-LGPL
  * a.k.a. the GNU Lesser General Public License version 2.1.
  *
@@ -24,7 +24,8 @@
  *        2013-Dec-11  Begun.
  * 1.0    2016-Nov-14  Uploaded.
  * 1.0.1  2019-Mar-31  View_POV_Include_Stack is utilized.
- * 1.0.1A 2021-Oct-10  The license text is updated.
+ * 1.0.2  2023-Mar-14  Only demo scenes are changed; there are no changes to
+ *                     this include file other than updating the version.
  *
  * Implementation note: due to POV-Ray namespace scope leakage, local variables
  * and function parameters (other than x, y, and z) *must* be prefixed.
@@ -44,9 +45,9 @@
  */
 #ifndef (IntegrateLight_Inc_Temp) #declare IntegrateLight_Inc_Temp = version;
 #version 3.7;
-#declare INTEGRATELIGHT_VERSION = 1.01;
+#declare INTEGRATELIGHT_VERSION = 1.02;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"integratelight.inc\" //version 1.0.1A\n"
+  #debug "#include \"integratelight.inc\" //version 1.0.2\n"
 #end
 
 // Explain the situation to the user before letting the scene crash:
