@@ -1,31 +1,32 @@
-/* integratelight.inc version 1.0.2
+/* integratelight.inc version 1.0.3-rc.1
  * Persistence of Vision Raytracer include file
  * POV-Ray Object Collection
  *
  * Converts spectral curve splines into a data structure suitable for
  * Lilysoft's SpectralRender package, using numeric integration.
  *
- * Copyright (C) 2016 - 2023 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the CC-LGPL
- * a.k.a. the GNU Lesser General Public License version 2.1.
+ * Copyright (C) 2016 - 2025 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU-LGPL.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License version 2.1 as published by the Free Software Foundation.
+ * This library is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please
- * visit https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for
- * the text of the GNU Lesser General Public License version 2.1.
+ * visit https://www.gnu.org/licenses/lgpl-3.0.html for the text
+ * of the GNU Lesser General Public License version 3.
  *
  * Vers.  Date         Comments
  * -----  ----         --------
  *        2013-Dec-11  Begun.
  * 1.0    2016-Nov-14  Uploaded.
  * 1.0.1  2019-Mar-31  View_POV_Include_Stack is utilized.
- * 1.0.2  2023-Mar-14  Only demo scenes are changed; there are no changes to
- *                     this include file other than updating the version.
+ * 1.0.2  2023-Mar-14  Only demo scenes are changed.
+ *        2024-Dec-29  The #version is preserved between 3.7 and 3.8.
+ * 1.0.3  2025-Oct-12  The license is upgraded to LGPL 3.
  *
  * Implementation note: due to POV-Ray namespace scope leakage, local variables
  * and function parameters (other than x, y, and z) *must* be prefixed.
@@ -44,10 +45,10 @@
  *   xyz2xyY
  */
 #ifndef (IntegrateLight_Inc_Temp) #declare IntegrateLight_Inc_Temp = version;
-#version 3.7;
-#declare INTEGRATELIGHT_VERSION = 1.02;
+#version max (3.7, min (3.8, version)); // Bracket the POV version.
+#declare INTEGRATELIGHT_VERSION = 1.03;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"integratelight.inc\" //version 1.0.2\n"
+  #debug "#include \"integratelight.inc\" //version 1.0.3-rc.1\n"
 #end
 
 // Explain the situation to the user before letting the scene crash:

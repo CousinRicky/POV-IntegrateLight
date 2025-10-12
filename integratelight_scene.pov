@@ -1,4 +1,4 @@
-/* integratelight_scene.pov version 1.0.2
+/* integratelight_scene.pov version 1.0.3-rc.1
  * Persistence of Vision Raytracer scene description file
  * POV-Ray Object Collection demo
  *
@@ -6,19 +6,19 @@
  * floor are illuminated by a lamp.  The user may select from a variety of
  * lamps.
  *
- * Copyright (C) 2016 - 2023 Richard Callwood III.  Some rights reserved.
- * This file is licensed under the terms of the CC-LGPL
- * a.k.a. the GNU Lesser General Public License version 2.1.
+ * Copyright (C) 2016 - 2025 Richard Callwood III.  Some rights reserved.
+ * This file is licensed under the terms of the GNU-LGPL.
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License version 2.1 as published by the Free Software Foundation.
+ * This library is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
  * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  Please
- * visit https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html for
- * the text of the GNU Lesser General Public License version 2.1.
+ * visit https://www.gnu.org/licenses/lgpl-3.0.html for the text
+ * of the GNU Lesser General Public License version 3.
  *
  * Vers.  Date         Comments
  * -----  ----         --------
@@ -27,6 +27,10 @@
  * 1.0.1  2019-Mar-31  The default normalization is changed from .gray to xyY.
  * 1.0.2  2023-Mar-14  Callwood's modifications to SpectralComposer.pov are used
  *                     if available.
+ *        2024-Dec-29  The #version is preserved between 3.7 and 3.8.
+ *        2024-Dec-29  Luminance-based gamut mapping is recognized.
+ *        2024-Dec-29  The ambient is lowered for non-radiosity scenes.
+ * 1.0.3  2025-Oct-12  The license is upgraded to LGPL 3.
  */
 // Preview:
 //   +W640 +H480 +A Declare=Preview=1
@@ -38,7 +42,7 @@
 // SpectralComposer.pov are commented out.
 //
 // After running pass 2, you may delete the integratelight_scene??.exr files.
-#version 3.7;
+#version max (3.7, min (3.8, version)); // Bracket the POV version.
 
 #ifndef (Preview) #declare Preview = no; #end
 
@@ -112,8 +116,8 @@
 
   #default
   { finish
-    { diffuse 1
-      ambient SpectralEmission (Emitter) * <0.24439, 0.24932, 0.24558>
+    { diffuse 1 emission 0
+      ambient SpectralEmission (Emitter) * 0.15
     }
   }
 
@@ -239,12 +243,14 @@
 #else
 
   #declare FName = "integratelight_scene"
-  #if (file_exists ("SpectralComposer-gm2.inc"))
-    #debug "Using modified SpectralComposer for gamut mapping.\n"
+  #if (file_exists ("SpectralComposer.inc"))
     // from https://github.com/CousinRicky/POV-SpectralRender-mods
-    #include "SpectralComposer-gm2.inc"
+    // version RC3-0.22-3 or later; otherwise, use SpectralComposer-gm2.inc
+    #declare GamutMap = 4; // luminance-based
+    #include "SpectralComposer.inc"
   #else
     // from SpectralRender
+    // IMPORTANT:
     // Make sure ALL of the #declare FName lines in SpectralComposer.pov
     // are commented out, or the above #declare FName will be overridden!
     #include "SpectralComposer.pov"
