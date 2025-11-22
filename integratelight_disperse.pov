@@ -1,4 +1,4 @@
-/* integratelight_disperse.pov version 1.0.3-rc.1
+/* integratelight_disperse.pov version 1.0.3-rc.2
  * Persistence of Vision Raytracer scene description file
  * POV-Ray Object Collection demo
  *
@@ -26,7 +26,9 @@
  * 1.0.2  2023-Mar-14  Callwood's modifications to SpectralComposer.pov are used
  *                     if available.
  *        2024-Dec-29  The #version is preserved between 3.7 and 3.8.
- * 1.0.3  2025-Oct-12  The license is upgraded to LGPL 3.
+ *        2025-Oct-12  The license is upgraded to LGPL 3.
+ * 1.0.3  2025-Nov-21  Luminance-based gamut mapping is recognized, and a bit of
+ *                     gray is added to the background to bring out the violets.
  */
 // Pass 1:
 //   +W640 +H480 +A +AM2 +R3 -J +FE +KI1 +KF36 +KFI38 +KFF73
@@ -55,7 +57,7 @@
 
   Set_Camera (<-1, 0, -100>, <0.9, 0, 0>, 1.8)
 
-  #if (Debug) background { SpectralEmission (E_D65) * 0.2 } #end
+  background { SpectralEmission (E_D65) * (Debug? 0.2: 0.02) }
 
   //================================= PRISM ====================================
 
@@ -152,8 +154,7 @@
   #if (file_exists ("SpectralComposer.inc"))
     // from https://github.com/CousinRicky/POV-SpectralRender-mods
     // version RC3-0.22-3 or later; otherwise, use SpectralComposer-gm2.inc
-    #declare GamutMap = 2; // method 2 exaggerates the violets; method 4 would
-                           // preserve luminance at the expense of visibility.
+    #declare GamutMap = 4; // luminance-based
     #include "SpectralComposer.inc"
   #else
     // from SpectralRender

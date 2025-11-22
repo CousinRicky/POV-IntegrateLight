@@ -1,4 +1,4 @@
-/* integratelight.inc version 1.0.3-rc.1
+/* integratelight.inc version 1.0.3-rc.2 2025-Nov-21
  * Persistence of Vision Raytracer include file
  * POV-Ray Object Collection
  *
@@ -48,7 +48,7 @@
 #version max (3.7, min (3.8, version)); // Bracket the POV version.
 #declare INTEGRATELIGHT_VERSION = 1.03;
 #ifdef (View_POV_Include_Stack)
-  #debug "#include \"integratelight.inc\" //version 1.0.3-rc.1\n"
+  #debug "#include \"integratelight.inc\" //version 1.0.3-rc.2\n"
 #end
 
 // Explain the situation to the user before letting the scene crash:

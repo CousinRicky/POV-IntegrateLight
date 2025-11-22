@@ -1,4 +1,4 @@
-/* integratelight_scene.pov version 1.0.3-rc.1
+/* integratelight_scene.pov version 1.0.3-rc.2 2025-Nov-21
  * Persistence of Vision Raytracer scene description file
  * POV-Ray Object Collection demo
  *
